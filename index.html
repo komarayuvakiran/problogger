@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>
-   LETS THINK
+   AI-Generated Content Hub
   </title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;family=Merriweather:wght@400;700&amp;family=Special+Elite&amp;display=swap" rel="stylesheet">
@@ -356,7 +356,7 @@
      <div class="header-content">
       <h1 class="site-title">
        <a href="/">
-        LETS THINK
+        AI-Generated Content Hub
        </a>
       </h1>
       <p class="site-tagline">
@@ -405,71 +405,52 @@
     </p>
    </main>
    <aside class="sidebar">
-    <div class="widget">
+    <div class="widget popular-posts-widget">
      <h3 class="widget-title">
-      POPULAR POSTS
+      Popular Posts
      </h3>
-     <div class="widget-content">
-      <div class="popular-post-item">
-       <img alt="Popular Post 1" src="https://via.placeholder.com/60x60.png?text=Pop1">
-       <a href="#">
-        Demo post with formatted elements and comments.
-       </a>
-      </div>
-      <div class="popular-post-item">
-       <img alt="Popular Post 2" src="https://via.placeholder.com/60x60.png?text=Pop2">
-       <a href="#">
-        Images in this template.
-       </a>
-      </div>
-      <!-- Add more popular posts -->
+     <div class="popular-posts-container">
+      <!-- Popular posts will be dynamically injected here -->
      </div>
     </div>
-    <div class="widget">
+    <div class="widget categories-widget">
      <h3 class="widget-title">
-      CATEGORIES / LINKS
+      Categories
      </h3>
-     <div class="widget-content">
-      <ul>
-       <li>
-        <a href="#">
-         Premium
-        </a>
-       </li>
-       <li>
-        <a href="#">
-         2 Columns
-        </a>
-       </li>
-       <li>
-        <a href="#">
-         Responsive
-        </a>
-       </li>
-       <li>
-        <a href="#">
-         Magazine
-        </a>
-       </li>
-       <li>
-        <a href="#">
-         Anime
-        </a>
-       </li>
-      </ul>
+     <ul id="category-links">
+      <!-- Categories will be dynamically injected here -->
+     </ul>
+    </div>
+    <div class="widget tags-widget">
+     <h3 class="widget-title">
+      Tags
+     </h3>
+     <div class="tag-cloud">
+      <a href="#" style="font-size: 12px;">
+       Premium
+      </a>
+      <a href="#" style="font-size: 10px;">
+       2 Columns
+      </a>
+      <a href="#" style="font-size: 14px;">
+       Responsive
+      </a>
+      <a href="#" style="font-size: 16px;">
+       Magazine
+      </a>
+      <a href="#" style="font-size: 12px;">
+       Anime
+      </a>
      </div>
     </div>
-    <div class="widget">
+    <div class="widget about-widget">
      <h3 class="widget-title">
-      ABOUT
+      About
      </h3>
-     <div class="widget-content">
-      <p>
-       Mel putent quaeque an, ut postea melius denique sit. Officiis sensibus at mea, sea at labitur deserunt. Eam dicam congue soluta ut.
-      </p>
-     </div>
+     <p>
+      Discover the latest articles across various categories. Our content is crafted with care to inform and inspire.
+     </p>
     </div>
-    <!-- Add more widgets like LABELS, BLOGROLL as needed -->
    </aside>
   </div>
   <footer class="site-footer">
@@ -478,7 +459,7 @@
      &copy;
      <span id="current-year">
      </span>
-     &copy; lets think
+     Powered by Streamlit &amp; GitHub Pages | Content by AI.
     </p>
    </div>
   </footer>
@@ -489,15 +470,15 @@
         // Search functionality
         document.getElementById('searchInput').addEventListener('input', function(e) {
             const searchTerm = e.target.value.toLowerCase();
-            const posts = document.querySelectorAll('.post-item');
+            const posts = document.querySelectorAll('.post-card');
             let visiblePostCount = 0;
 
             posts.forEach(post => {
-                const title = post.querySelector('.post-title a').textContent.toLowerCase();
-                const excerpt = post.querySelector('.post-excerpt').textContent.toLowerCase();
+                const title = post.querySelector('h3 a').textContent.toLowerCase();
+                const content = post.querySelector('.post-card-meta-description').textContent.toLowerCase();
                 
-                if (title.includes(searchTerm) || excerpt.includes(searchTerm)) {
-                    post.style.display = 'flex';
+                if (title.includes(searchTerm) || content.includes(searchTerm)) {
+                    post.style.display = 'block';
                     visiblePostCount++;
                 } else {
                     post.style.display = 'none';
