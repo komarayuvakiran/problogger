@@ -3,395 +3,104 @@
  <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>
-   AI-Generated Content Hub
-  </title>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;family=Merriweather:wght@400;700&amp;family=Special+Elite&amp;display=swap" rel="stylesheet">
-  <style>
-   :root {
-            --primary-bg: #1a1a1a; /* Very dark background */
-            --content-bg: #362f2f; /* Dark brown for content areas */
-            --widget-bg: #4a3838;   /* Slightly lighter brown for widgets */
-            --header-bg: #2c2525;
-            --text-color: #e0e0e0;  /* Light text for readability on dark bg */
-            --title-color: #f5f5f5;
-            --accent-color: #c86c0d; /* Orange/Brown accent */
-            --border-color: #554242;
-            --link-color: #ff8c00;
-            --button-bg: #8b4513; /* SaddleBrown */
-            --button-hover-bg: #a0522d; /* Sienna */
-            --font-body: 'Roboto', sans-serif;
-            --font-headings: 'Merriweather', serif;
-            --font-special: 'Special Elite', cursive; /* For site title maybe */
-        }
-
-        body {
-            margin: 0;
-            font-family: var(--font-body);
-            background-color: var(--primary-bg);
-            color: var(--text-color);
-            font-size: 16px;
-            line-height: 1.6;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        /* Header */
-        .site-header {
-            background: var(--header-bg) url('https://via.placeholder.com/1200x400.png?text=Shingeki+No+Kyojin+Header+Image') no-repeat center center; /* Replace with your actual header image */
-            background-size: cover;
-            padding: 40px 0;
-            text-align: center;
-            position: relative;
-            color: white;
-            min-height: 300px; /* Ensure space for background image */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        .site-header::before { /* Dark overlay for text readability */
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-color: rgba(0,0,0,0.5);
-        }
-
-        .header-content {
-            position: relative; /* To be above the overlay */
-            z-index: 1;
-        }
-
-        .site-title a {
-            font-family: var(--font-special); /* Or var(--font-headings) */
-            font-size: 3.5em;
-            color: var(--title-color);
-            text-decoration: none;
-            margin: 0;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
-        }
-
-        .site-tagline {
-            font-size: 1.2em;
-            color: #ddd;
-            margin-top: 10px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
-        }
-        
-        .social-icons-header {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            z-index: 2;
-        }
-        .social-icons-header a {
-            color: #fff;
-            margin-left: 10px;
-            font-size: 1.5em;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        .social-icons-header a:hover {
-            color: var(--accent-color);
-        }
-
-        /* Navigation */
-        .main-nav {
-            background-color: var(--content-bg);
-            border-bottom: 2px solid var(--border-color);
-        }
-        .main-nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-        }
-        .main-nav li a {
-            display: block;
-            padding: 15px 20px;
-            color: var(--text-color);
-            text-decoration: none;
-            font-weight: bold;
-            transition: background-color 0.3s, color 0.3s;
-        }
-        .main-nav li a:hover, .main-nav li.active a {
-            background-color: var(--accent-color);
-            color: white;
-        }
-
-        /* Main Wrapper */
-        .main-wrapper {
-            display: flex;
-            gap: 30px;
-            padding: 30px 0;
-        }
-
-        .content-area {
-            flex: 3; /* Takes 3 parts of space */
-        }
-
-        .sidebar {
-            flex: 1; /* Takes 1 part of space */
-        }
-
-        /* Post Item / Card */
-        .post-item {
-            background-color: var(--content-bg);
-            margin-bottom: 30px;
-            border: 1px solid var(--border-color);
-            border-radius: 5px;
-            overflow: hidden;
-            display: flex;
-        }
-        .post-thumbnail {
-            flex: 0 0 250px; /* Fixed width for thumbnail */
-            position: relative;
-        }
-        .post-thumbnail img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-        .post-date {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background-color: rgba(0,0,0,0.6);
-            color: white;
-            padding: 5px 10px;
-            font-size: 0.8em;
-            border-radius: 3px;
-            text-align: center;
-        }
-        .post-date .day { display: block; font-size: 1.4em; font-weight: bold; }
-        .post-date .month-year { display: block; font-size: 0.8em; }
-
-        .post-content-summary {
-            padding: 20px;
-            flex-grow: 1;
-            position: relative; /* For the wing icon */
-        }
-        .post-title {
-            font-family: var(--font-headings);
-            font-size: 1.8em;
-            margin: 0 0 10px 0;
-        }
-        .post-title a {
-            color: var(--title-color);
-            text-decoration: none;
-        }
-        .post-title a:hover {
-            color: var(--accent-color);
-        }
-        .post-meta {
-            font-size: 0.9em;
-            color: #b0b0b0;
-            margin-bottom: 15px;
-        }
-        .post-meta span { margin-right: 15px; }
-        .post-meta i { margin-right: 5px; }
-        .post-excerpt { /* This class will be used for the meta description from your python script */
-            margin-bottom: 20px;
-            font-size: 0.95em;
-        }
-        .read-more-btn {
-            display: inline-block;
-            background-color: var(--button-bg);
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 3px;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-        .read-more-btn:hover {
-            background-color: var(--button-hover-bg);
-        }
-        .post-wing-icon {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 50px; /* Adjust size */
-            height: auto;
-            opacity: 0.7;
-        }
-         /* Placeholder for wing icon - replace src with your actual icon image */
-        .post-wing-icon img { width: 100%; }
-
-
-        /* Sidebar Widgets */
-        .widget {
-            background-color: var(--widget-bg);
-            margin-bottom: 30px;
-            border: 1px solid var(--border-color);
-            border-radius: 3px;
-        }
-        .widget-title {
-            background-color: var(--content-bg); /* Darker title bar for widget */
-            color: var(--title-color);
-            padding: 12px 15px;
-            margin: 0;
-            font-family: var(--font-headings);
-            font-size: 1.2em;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .widget-content {
-            padding: 15px;
-        }
-        .widget ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .widget ul li {
-            border-bottom: 1px dashed var(--border-color);
-            padding: 8px 0;
-        }
-        .widget ul li:last-child {
-            border-bottom: none;
-        }
-        .widget ul li a {
-            color: var(--link-color);
-            text-decoration: none;
-        }
-        .widget ul li a:hover {
-            text-decoration: underline;
-        }
-        .popular-post-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-        .popular-post-item img {
-            width: 60px;
-            height: 60px;
-            object-fit: cover;
-            margin-right: 10px;
-            border-radius: 3px;
-        }
-        .popular-post-item a {
-             color: var(--link-color); text-decoration:none; font-size:0.95em;
-        }
-
-        /* Search Bar (Adapting from your previous template's JS) */
-        .search-bar-container {
-            margin-bottom: 20px;
-            padding: 15px;
-            background-color: var(--content-bg);
-            border-radius: 3px;
-        }
-        #searchInput {
-            width: 100%;
-            padding: 12px 15px;
-            font-size: 1em;
-            border: 1px solid var(--border-color);
-            border-radius: 3px;
-            background-color: var(--widget-bg);
-            color: var(--text-color);
-        }
-        #searchInput::placeholder { color: #aaa; }
-
-        .no-posts-message { /* For JS search no results */
-            padding: 20px;
-            text-align: center;
-            font-style: italic;
-            color: #ccc;
-            background-color: var(--content-bg);
-            border-radius: 3px;
-            margin-top: 20px;
-        }
-        
-        /* Footer */
-        .site-footer {
-            background-color: var(--content-bg);
-            padding: 30px 0;
-            margin-top: 30px;
-            text-align: center;
-            border-top: 2px solid var(--border-color);
-            font-size: 0.9em;
-        }
-
-        /* Responsive */
-        @media (max-width: 992px) {
-            .post-thumbnail { flex: 0 0 200px; }
-            .post-title { font-size: 1.6em; }
-        }
+  <meta content="Explore a wide range of AI-generated articles on various topics, updated regularly." name="description">
+  <meta content="AI-Generated Content Hub" property="og:title">
+   <meta content="Explore a wide range of AI-generated articles on various topics, updated regularly." property="og:description">
+    <meta content="website" property="og:type">
+     <meta content="https://github.com/komarayuvakiran/probloggerhub.io" property="og:url">
+     <title>
+      AI-Generated Content Hub
+     </title>
+     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&amp;family=Open+Sans:wght@400;600&amp;display=swap" rel="stylesheet">
+     <style>
+      body { font-family: 'Open Sans', sans-serif; line-height: 1.7; margin: 0; background-color: #f4f7f6; color: #333; display: flex; flex-direction: column; min-height: 100vh; }
+        .site-container { display: flex; flex: 1; }
+        .main-content-area { flex-grow: 1; padding: 20px; max-width: 900px; margin: 0 auto;}
+        .sidebar { width: 280px; background-color: #ffffff; padding: 20px; border-right: 1px solid #e0e0e0; box-shadow: 2px 0 5px rgba(0,0,0,0.05); min-height: 100vh; }
+        .sidebar h3 { font-family: 'Montserrat', sans-serif; color: #2c3e50; margin-top: 0; border-bottom: 2px solid #5E5DF0; padding-bottom: 8px; }
+        .sidebar ul { list-style-type: none; padding: 0; }
+        .sidebar ul li a { text-decoration: none; color: #5E5DF0; display: block; padding: 8px 0; transition: color 0.2s; }
+        .sidebar ul li a:hover { color: #F6A024; }
+        .site-header { background: linear-gradient(135deg, #5E5DF0 0%, #43CBFF 100%); color: white; padding: 3rem 1.5rem; text-align: center; border-bottom: 5px solid #F6A024; }
+        .site-header h1 { margin: 0; font-family: 'Montserrat', sans-serif; font-size: 2.8rem; font-weight: 700; letter-spacing: -1px; }
+        .site-header p { margin-top: 0.5rem; opacity: 0.9; font-size: 1.1rem; }
+        .search-bar-container { margin: 20px 0; display: flex; justify-content: center; }
+        .search-bar-container input[type="text"] { padding: 12px 15px; font-size: 1rem; border: 1px solid #ccc; border-radius: 25px; width: 60%; max-width: 500px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); transition: box-shadow 0.2s; }
+        .search-bar-container input[type="text"]:focus { box-shadow: 0 0 8px rgba(94, 93, 240, 0.5); outline: none; border-color: #5E5DF0; }
+        .category-section { margin-bottom: 2.5rem; background-color: #fff; padding: 1.5rem; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.07); }
+        .category-section h2 { font-family: 'Montserrat', sans-serif; font-size: 1.8rem; color: #333; border-bottom: 3px solid #5E5DF0; padding-bottom: 0.6rem; margin-bottom: 1.5rem; display: flex; align-items: center; }
+        .category-section h2 .icon { font-size: 1.6rem; margin-right: 10px; }
+        .posts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        .post-item { background: #ffffff; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.06); overflow: hidden; transition: transform 0.25s ease, box-shadow 0.25s ease; display: flex; flex-direction: column; }
+        .post-item:hover { transform: translateY(-6px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .post-thumbnail { /* Optional: if you add thumbnails */ width: 100%; height: 180px; background-color: #e0e0e0; display:flex; align-items:center; justify-content:center; color:#aaa; }
+        .post-thumbnail img { width: 100%; height: 100%; object-fit: cover; }
+        .post-content-summary { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
+        .post-title { font-family: 'Montserrat', sans-serif; font-size: 1.3rem; line-height: 1.4; margin: 0 0 10px 0; }
+        .post-title a { text-decoration: none; color: #2c3e50; }
+        .post-title a:hover { color: #5E5DF0; }
+        .post-meta { font-size: 0.85rem; color: #777; margin-bottom: 12px; }
+        .post-excerpt { font-size: 0.95rem; color: #555; margin-bottom: 15px; flex-grow: 1; }
+        .read-more-btn { display: inline-block; background-color: #5E5DF0; color: white; padding: 8px 15px; border-radius: 20px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: background-color 0.2s; align-self: flex-start; }
+        .read-more-btn:hover { background-color: #4341d8; }
+        .no-posts, .no-search-results-message { color: #777; font-style: italic; padding: 1rem; text-align: center; }
+        .site-footer { text-align: center; padding: 2rem 0; color: #777; font-size: 0.9rem; margin-top: auto; background-color: #e9ecef; border-top: 1px solid #ddd;}
+        .popular-post-item { margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #eee; }
+        .popular-post-item:last-child { border-bottom: none; }
+        .popular-post-item h5 { margin: 0 0 5px 0; font-family: 'Montserrat', sans-serif; font-size: 1rem; }
+        .popular-post-item h5 a { text-decoration: none; color: #333; }
+        .popular-post-item h5 a:hover { color: #5E5DF0; }
+        .popular-post-item .popular-post-date { font-size: 0.8rem; color: #888; }
         @media (max-width: 768px) {
-            .main-wrapper { flex-direction: column; }
-            .post-item { flex-direction: column; }
-            .post-thumbnail { width: 100%; max-height: 250px; flex-basis: auto; }
-            .site-title a { font-size: 2.5em; }
-            .main-nav ul { flex-direction: column; text-align: center; }
+            .site-container { flex-direction: column; }
+            .sidebar { width: 100%; border-right: none; border-bottom: 1px solid #e0e0e0; min-height: auto; }
+            .main-content-area { padding: 15px; }
+            .site-header h1 { font-size: 2.2rem; }
+            .search-bar-container input[type="text"] { width: 80%; }
         }
-         @media (max-width: 480px) {
-            .site-title a { font-size: 2em; }
-        }
-  </style>
+     </style>
+    </meta>
+   </meta>
+  </meta>
  </head>
  <body>
   <header class="site-header">
-   <div class="container">
-    <div class="header-top">
-     <div class="social-links">
-      <a href="#" title="Twitter">
-       <i class="fab fa-twitter">
-       </i>
+   <h1>
+    AI-Generated Content Hub
+   </h1>
+   <p>
+    Discover the Latest AI-Generated Articles
+   </p>
+  </header>
+  <div class="site-container">
+   <aside class="sidebar">
+    <h3>
+     Categories
+    </h3>
+    <ul id="category-links">
+     <li>
+      <a href="#category-1">
+       ✨ daily
       </a>
-      <a href="#" title="Instagram">
-       <i class="fab fa-instagram">
-       </i>
-      </a>
-      <a href="#" title="Facebook">
-       <i class="fab fa-facebook-f">
-       </i>
-      </a>
-     </div>
-     <div class="header-content">
-      <h1 class="site-title">
-       <a href="/">
-        AI-Generated Content Hub
+     </li>
+    </ul>
+    <h3 style="margin-top: 30px;">
+     Popular Posts
+    </h3>
+    <div class="popular-posts-container">
+     <div class="popular-post-item">
+      <h5>
+       <a href="posts/kpop-in-public--one-shot-bibi--비비--vengeance-나쁜년---20250608180706.html">
+        [KPOP IN PUBLIC | ONE SHOT] BIBI  (비비)  VENGEANCE (나쁜년)  | DANCE COVER BY URIVERSE FROM BARCELONA
        </a>
-      </h1>
-      <p class="site-tagline">
-       Discover the Latest AI-Generated Articles
-      </p>
+      </h5>
+      <span class="popular-post-date">
+       2025-06-08
+      </span>
      </div>
     </div>
-    <nav class="main-nav">
-     <ul>
-      <li>
-       <a href="/">
-        Home
-       </a>
-      </li>
-      <li>
-       <a href="#categories">
-        Categories
-       </a>
-      </li>
-      <li>
-       <a href="#about">
-        About
-       </a>
-      </li>
-      <li>
-       <a href="#contact">
-        Contact
-       </a>
-      </li>
-     </ul>
-    </nav>
-   </div>
-  </header>
-  <div class="container main-wrapper">
-   <main class="content-area">
+   </aside>
+   <main class="main-content-area">
     <div class="search-bar-container">
      <input id="searchInput" placeholder="Search articles by title or keyword..." type="text">
     </div>
@@ -400,10 +109,10 @@
       <h2>
        ✨ daily
       </h2>
-      <article class="post-item" data-post-id="2">
+      <article class="post-item" data-post-id="5">
        <div class="post-content-summary">
         <h2 class="post-title">
-         <a href="posts/kpop-in-public--one-shot-bibi--비비--vengeance-나쁜년---20250608175909.html">
+         <a href="posts/kpop-in-public--one-shot-bibi--비비--vengeance-나쁜년---20250608180706.html">
           [KPOP IN PUBLIC | ONE SHOT] BIBI  (비비)  VENGEANCE (나쁜년)  | DANCE COVER BY URIVERSE FROM BARCELONA
          </a>
         </h2>
@@ -415,119 +124,103 @@
 
 Are you ready to unleash your inner K-pop fan and experience the th...
         </p>
-        <a class="read-more-btn" href="posts/kpop-in-public--one-shot-bibi--비비--vengeance-나쁜년---20250608175909.html">
+        <a class="read-more-btn" href="posts/kpop-in-public--one-shot-bibi--비비--vengeance-나쁜년---20250608180706.html">
          Read More &raquo;
         </a>
        </div>
       </article>
      </section>
     </div>
-    <p class="no-posts-message" id="globalNoSearchResults" style="display:none;">
-     No matching results found. Try a different search term.
-    </p>
    </main>
-   <aside class="sidebar">
-    <div class="widget popular-posts-widget">
-     <h3 class="widget-title">
-      Popular Posts
-     </h3>
-     <div class="popular-posts-container">
-      <div class="popular-post-item">
-       <h5>
-        <a href="posts/kpop-in-public--one-shot-bibi--비비--vengeance-나쁜년---20250608175909.html">
-         [KPOP IN PUBLIC | ONE SHOT] BIBI  (비비)  VENGEANCE (나쁜년)  | DANCE COVER BY URIVERSE FROM BARCELONA
-        </a>
-       </h5>
-       <span class="popular-post-date">
-        2025-06-08
-       </span>
-      </div>
-     </div>
-    </div>
-    <div class="widget categories-widget">
-     <h3 class="widget-title">
-      Categories
-     </h3>
-     <ul id="category-links">
-      <li>
-       <a href="#category-1">
-        ✨ daily
-       </a>
-      </li>
-     </ul>
-    </div>
-    <div class="widget tags-widget">
-     <h3 class="widget-title">
-      Tags
-     </h3>
-     <div class="tag-cloud">
-      <a href="#" style="font-size: 12px;">
-       Premium
-      </a>
-      <a href="#" style="font-size: 10px;">
-       2 Columns
-      </a>
-      <a href="#" style="font-size: 14px;">
-       Responsive
-      </a>
-      <a href="#" style="font-size: 16px;">
-       Magazine
-      </a>
-      <a href="#" style="font-size: 12px;">
-       Anime
-      </a>
-     </div>
-    </div>
-    <div class="widget about-widget">
-     <h3 class="widget-title">
-      About
-     </h3>
-     <p>
-      Discover the latest articles across various categories. Our content is crafted with care to inform and inspire.
-     </p>
-    </div>
-   </aside>
   </div>
   <footer class="site-footer">
-   <div class="container">
-    <p>
-     &copy;
-     <span id="current-year">
-     </span>
-     Powered by Streamlit &amp; GitHub Pages | Content by AI.
-    </p>
-   </div>
+   <p>
+    Powered by Streamlit &amp; GitHub Pages | Content by AI.
+   </p>
   </footer>
   <script>
-   // Set current year in footer
-        document.getElementById('current-year').textContent = new Date().getFullYear();
+   function htmlEscape(str) { return String(str).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+    function debounce(func, delay) { let timeout; return function(...args) { clearTimeout(timeout); timeout = setTimeout(() => func.apply(this, args), delay); }; }
 
-        // Search functionality
-        document.getElementById('searchInput').addEventListener('input', function(e) {
-            const searchTerm = e.target.value.toLowerCase();
-            const posts = document.querySelectorAll('.post-card');
-            let visiblePostCount = 0;
+    function filterArticles() {
+        const input = document.getElementById('searchInput');
+        const filter = input.value.toLowerCase();
+        const postsContainer = document.getElementById('posts-container');
+        const categorySections = postsContainer.getElementsByClassName('category-section');
+        let overallArticlesFound = false;
 
-            posts.forEach(post => {
-                const title = post.querySelector('h3 a').textContent.toLowerCase();
-                const content = post.querySelector('.post-card-meta-description').textContent.toLowerCase();
-                
-                if (title.includes(searchTerm) || content.includes(searchTerm)) {
-                    post.style.display = 'block';
-                    visiblePostCount++;
-                } else {
-                    post.style.display = 'none';
-                }
-            });
+        let globalNoResultsMsg = document.getElementById('globalNoSearchResults');
+        if (!globalNoResultsMsg && postsContainer) {
+            globalNoResultsMsg = document.createElement('p');
+            globalNoResultsMsg.id = 'globalNoSearchResults';
+            globalNoResultsMsg.className = 'no-posts';
+            globalNoResultsMsg.style.textAlign = 'center';
+            globalNoResultsMsg.style.marginTop = '2rem';
+            globalNoResultsMsg.style.display = 'none';
+            postsContainer.appendChild(globalNoResultsMsg);
+        }
 
-            // Show/hide no results message
-            const noResultsElement = document.getElementById('globalNoSearchResults');
-            if (visiblePostCount === 0 && posts.length > 0) {
-                noResultsElement.style.display = 'block';
-            } else {
-                noResultsElement.style.display = 'none';
+        for (let i = 0; i < categorySections.length; i++) {
+            const section = categorySections[i];
+            const postItems = section.getElementsByClassName('post-item');
+            const originalNoPostsMsg = section.querySelector('.no-posts'); // Python-generated "No articles yet..."
+            let articlesFoundInSection = 0;
+
+            let noSearchResultsInSectionMsg = section.querySelector('.no-search-results-message');
+            if (!noSearchResultsInSectionMsg) {
+                noSearchResultsInSectionMsg = document.createElement('p');
+                noSearchResultsInSectionMsg.className = 'no-search-results-message no-posts';
+                noSearchResultsInSectionMsg.style.display = 'none';
+                section.appendChild(noSearchResultsInSectionMsg); // Append after posts-grid or similar
             }
-        });
+
+            for (let j = 0; j < postItems.length; j++) {
+                const card = postItems[j];
+                const titleTag = card.querySelector('.post-title a');
+                const excerptTag = card.querySelector('.post-excerpt');
+                const titleText = titleTag ? titleTag.textContent.toLowerCase() : '';
+                const excerptText = excerptTag ? excerptTag.textContent.toLowerCase() : '';
+
+                if (titleText.includes(filter) || excerptText.includes(filter)) {
+                    card.style.display = ""; articlesFoundInSection++; overallArticlesFound = true;
+                } else {
+                    card.style.display = "none";
+                }
+            }
+
+            if (articlesFoundInSection > 0) {
+                section.style.display = "";
+                if (originalNoPostsMsg) originalNoPostsMsg.style.display = "none";
+                if (noSearchResultsInSectionMsg) noSearchResultsInSectionMsg.style.display = "none";
+            } else {
+                if (filter.length > 0) {
+                    section.style.display = ""; // Keep category title visible
+                    if (originalNoPostsMsg) originalNoPostsMsg.style.display = "none";
+                    if (noSearchResultsInSectionMsg) {
+                        noSearchResultsInSectionMsg.textContent = 'No articles match your search in this category.';
+                        noSearchResultsInSectionMsg.style.display = "";
+                    }
+                } else {
+                    section.style.display = "";
+                    if (noSearchResultsInSectionMsg) noSearchResultsInSectionMsg.style.display = "none";
+                    if (originalNoPostsMsg) originalNoPostsMsg.style.display = (postItems.length === 0) ? "" : "none";
+                }
+            }
+        }
+        if (globalNoResultsMsg) {
+            if (filter.length > 0 && !overallArticlesFound) {
+                globalNoResultsMsg.textContent = \`No articles found anywhere for "$\{{htmlEscape(filter)\}}". Try a different search.\`;
+                globalNoResultsMsg.style.display = "";
+            } else {
+                globalNoResultsMsg.style.display = "none";
+            }
+        }
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('searchInput');
+        if (searchInput) { searchInput.addEventListener('keyup', debounce(filterArticles, 300)); }
+        filterArticles(); // Initial call
+    });
   </script>
  </body>
 </html>
