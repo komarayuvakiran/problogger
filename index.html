@@ -4,410 +4,514 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>
-   {site_title}
+   LETS THINK
   </title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;family=Merriweather:wght@400;700&amp;family=Special+Elite&amp;display=swap" rel="stylesheet">
   <style>
-   body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #e0e0e0;
-            background-color: #0d1117;
-            margin: 0;
-            padding: 0;
+   :root {
+            --primary-bg: #1a1a1a; /* Very dark background */
+            --content-bg: #362f2f; /* Dark brown for content areas */
+            --widget-bg: #4a3838;   /* Slightly lighter brown for widgets */
+            --header-bg: #2c2525;
+            --text-color: #e0e0e0;  /* Light text for readability on dark bg */
+            --title-color: #f5f5f5;
+            --accent-color: #c86c0d; /* Orange/Brown accent */
+            --border-color: #554242;
+            --link-color: #ff8c00;
+            --button-bg: #8b4513; /* SaddleBrown */
+            --button-hover-bg: #a0522d; /* Sienna */
+            --font-body: 'Roboto', sans-serif;
+            --font-headings: 'Merriweather', serif;
+            --font-special: 'Special Elite', cursive; /* For site title maybe */
         }
+
+        body {
+            margin: 0;
+            font-family: var(--font-body);
+            background-color: var(--primary-bg);
+            color: var(--text-color);
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
         .container {
+            width: 90%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
         }
-        header.site-header {
-            text-align: center;
+
+        /* Header */
+        .site-header {
+            background: var(--header-bg) url('https://via.placeholder.com/1200x400.png?text=Shingeki+No+Kyojin+Header+Image') no-repeat center center; /* Replace with your actual header image */
+            background-size: cover;
             padding: 40px 0;
-            background-color: #161b22;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+            color: white;
+            min-height: 300px; /* Ensure space for background image */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
-        header.site-header h1 {
-            font-size: 2.8rem;
-            margin-bottom: 10px;
-            color: #58a6ff;
+        .site-header::before { /* Dark overlay for text readability */
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(0,0,0,0.5);
         }
-        header.site-header p {
-            font-size: 1.2rem;
-            color: #8b949e;
+
+        .header-content {
+            position: relative; /* To be above the overlay */
+            z-index: 1;
         }
-        .search-bar-container {
+
+        .site-title a {
+            font-family: var(--font-special); /* Or var(--font-headings) */
+            font-size: 3.5em;
+            color: var(--title-color);
+            text-decoration: none;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        }
+
+        .site-tagline {
+            font-size: 1.2em;
+            color: #ddd;
+            margin-top: 10px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+        }
+        
+        .social-icons-header {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 2;
+        }
+        .social-icons-header a {
+            color: #fff;
+            margin-left: 10px;
+            font-size: 1.5em;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .social-icons-header a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Navigation */
+        .main-nav {
+            background-color: var(--content-bg);
+            border-bottom: 2px solid var(--border-color);
+        }
+        .main-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
             display: flex;
             justify-content: center;
-            margin-bottom: 30px;
         }
-        #searchInput {
-            width: 60%;
-            padding: 12px 20px;
-            font-size: 1rem;
-            border: 1px solid #30363d;
-            border-radius: 6px;
-            background-color: #161b22;
-            color: #e0e0e0;
-            outline: none;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        .main-nav li a {
+            display: block;
+            padding: 15px 20px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s, color 0.3s;
         }
-        #searchInput:focus {
-            border-color: #58a6ff;
-            box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.2);
+        .main-nav li a:hover, .main-nav li.active a {
+            background-color: var(--accent-color);
+            color: white;
         }
-        .category-section {
-            margin-bottom: 50px;
-            background-color: #161b22;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .category-section h2 {
-            font-size: 1.8rem;
-            color: #58a6ff;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #30363d;
-            padding-bottom: 10px;
-        }
-        .posts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+
+        /* Main Wrapper */
+        .main-wrapper {
+            display: flex;
             gap: 30px;
+            padding: 30px 0;
         }
-        .post-card {
-            background-color: #0d1117;
-            border: 1px solid #30363d;
-            border-radius: 8px;
+
+        .content-area {
+            flex: 3; /* Takes 3 parts of space */
+        }
+
+        .sidebar {
+            flex: 1; /* Takes 1 part of space */
+        }
+
+        /* Post Item / Card */
+        .post-item {
+            background-color: var(--content-bg);
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            overflow: hidden;
+            display: flex;
+        }
+        .post-thumbnail {
+            flex: 0 0 250px; /* Fixed width for thumbnail */
+            position: relative;
+        }
+        .post-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .post-date {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: rgba(0,0,0,0.6);
+            color: white;
+            padding: 5px 10px;
+            font-size: 0.8em;
+            border-radius: 3px;
+            text-align: center;
+        }
+        .post-date .day { display: block; font-size: 1.4em; font-weight: bold; }
+        .post-date .month-year { display: block; font-size: 0.8em; }
+
+        .post-content-summary {
             padding: 20px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            flex-grow: 1;
+            position: relative; /* For the wing icon */
         }
-        .post-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+        .post-title {
+            font-family: var(--font-headings);
+            font-size: 1.8em;
+            margin: 0 0 10px 0;
         }
-        .post-card h3 {
-            font-size: 1.4rem;
-            margin-top: 0;
-            margin-bottom: 12px;
-            color: #ffffff;
+        .post-title a {
+            color: var(--title-color);
+            text-decoration: none;
         }
-        .post-card p {
-            font-size: 1rem;
-            color: #8b949e;
+        .post-title a:hover {
+            color: var(--accent-color);
+        }
+        .post-meta {
+            font-size: 0.9em;
+            color: #b0b0b0;
             margin-bottom: 15px;
         }
-        .post-card a {
+        .post-meta span { margin-right: 15px; }
+        .post-meta i { margin-right: 5px; }
+        .post-excerpt { /* This class will be used for the meta description from your python script */
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+        .read-more-btn {
             display: inline-block;
-            padding: 10px 18px;
-            background-color: #58a6ff;
-            color: #ffffff;
+            background-color: var(--button-bg);
+            color: white;
+            padding: 10px 20px;
             text-decoration: none;
-            border-radius: 5px;
-            font-weight: 600;
-            transition: background-color 0.3s ease;
+            border-radius: 3px;
+            font-weight: bold;
+            transition: background-color 0.3s;
         }
-        .post-card a:hover {
-            background-color: #3178c6;
+        .read-more-btn:hover {
+            background-color: var(--button-hover-bg);
         }
-        footer.site-footer {
+        .post-wing-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 50px; /* Adjust size */
+            height: auto;
+            opacity: 0.7;
+        }
+         /* Placeholder for wing icon - replace src with your actual icon image */
+        .post-wing-icon img { width: 100%; }
+
+
+        /* Sidebar Widgets */
+        .widget {
+            background-color: var(--widget-bg);
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+            border-radius: 3px;
+        }
+        .widget-title {
+            background-color: var(--content-bg); /* Darker title bar for widget */
+            color: var(--title-color);
+            padding: 12px 15px;
+            margin: 0;
+            font-family: var(--font-headings);
+            font-size: 1.2em;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .widget-content {
+            padding: 15px;
+        }
+        .widget ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .widget ul li {
+            border-bottom: 1px dashed var(--border-color);
+            padding: 8px 0;
+        }
+        .widget ul li:last-child {
+            border-bottom: none;
+        }
+        .widget ul li a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+        .widget ul li a:hover {
+            text-decoration: underline;
+        }
+        .popular-post-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .popular-post-item img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            margin-right: 10px;
+            border-radius: 3px;
+        }
+        .popular-post-item a {
+             color: var(--link-color); text-decoration:none; font-size:0.95em;
+        }
+
+        /* Search Bar (Adapting from your previous template's JS) */
+        .search-bar-container {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: var(--content-bg);
+            border-radius: 3px;
+        }
+        #searchInput {
+            width: 100%;
+            padding: 12px 15px;
+            font-size: 1em;
+            border: 1px solid var(--border-color);
+            border-radius: 3px;
+            background-color: var(--widget-bg);
+            color: var(--text-color);
+        }
+        #searchInput::placeholder { color: #aaa; }
+
+        .no-posts-message { /* For JS search no results */
+            padding: 20px;
             text-align: center;
-            margin-top: 60px;
-            padding: 30px 0;
-            background-color: #161b22;
-            border-radius: 10px 10px 0 0;
-            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+            font-style: italic;
+            color: #ccc;
+            background-color: var(--content-bg);
+            border-radius: 3px;
+            margin-top: 20px;
         }
-        footer.site-footer p {
-            color: #8b949e;
-            font-size: 0.9rem;
+        
+        /* Footer */
+        .site-footer {
+            background-color: var(--content-bg);
+            padding: 30px 0;
+            margin-top: 30px;
+            text-align: center;
+            border-top: 2px solid var(--border-color);
+            font-size: 0.9em;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .post-thumbnail { flex: 0 0 200px; }
+            .post-title { font-size: 1.6em; }
         }
         @media (max-width: 768px) {
-            header.site-header h1 { font-size: 2.4rem; }
-            header.site-header p { font-size: 1.05rem; }
-            .category-section h2 { font-size: 1.7rem; }
-            #searchInput { width: 90%; }
+            .main-wrapper { flex-direction: column; }
+            .post-item { flex-direction: column; }
+            .post-thumbnail { width: 100%; max-height: 250px; flex-basis: auto; }
+            .site-title a { font-size: 2.5em; }
+            .main-nav ul { flex-direction: column; text-align: center; }
         }
-        @media (max-width: 480px) {
-            header.site-header h1 { font-size: 2rem; }
-            .posts-grid { grid-template-columns: 1fr; } /* Single column on very small screens */
+         @media (max-width: 480px) {
+            .site-title a { font-size: 2em; }
         }
   </style>
  </head>
  <body>
-  <div class="container">
-   <header class="site-header">
-    <h1>
-     {site_title}
-    </h1>
-    <p>
-     {header_text}
-    </p>
-   </header>
-   <div class="search-bar-container">
-    <input id="searchInput" placeholder="{search_placeholder}" type="text">
-   </div>
-   <main id="main-content">
-    <section class="category-section" id="category-articles">
-     <h2>
-      <span class="icon">
-       📄
-      </span>
-      articles
-     </h2>
-     <div class="posts-grid">
-      <div class="post-card">
-       <div class="post-card-content">
-        <h3>
-         <a href="posts/cute-but-powerful-meet-nanocluster-a-tiny-supercom-20250608172643.html">
-          Cute, but powerful: meet NanoCluster, a tiny supercomputer
-         </a>
-        </h3>
-        <p class="post-card-meta-description">
-         ** Discover the power of NanoCluster, a tiny supercomputer that&amp;#x27;s smaller than a coffee mug. Learn about its features, design, and impact on c...
-        </p>
-        <div class="post-card-date">
-         📅 June 08, 2025
-        </div>
-       </div>
-      </div>
-      <div class="post-card">
-       <div class="post-card-content">
-        <h3>
-         <a href="posts/cute-but-powerful-meet-nanocluster-a-tiny-supercom-20250608172526.html">
-          Cute, but powerful: meet NanoCluster, a tiny supercomputer
-         </a>
-        </h3>
-        <p class="post-card-meta-description">
-         ** Discover the power of NanoCluster, a tiny supercomputer that&amp;#x27;s smaller than a coffee mug. Learn about its features, design, and impact on c...
-        </p>
-        <div class="post-card-date">
-         📅 June 08, 2025
-        </div>
-       </div>
-      </div>
-      <div class="post-card">
-       <div class="post-card-content">
-        <h3>
-         <a href="posts/cute-but-powerful-meet-nanocluster-a-tiny-supercom-20250608172431.html">
-          Cute, but powerful: meet NanoCluster, a tiny supercomputer
-         </a>
-        </h3>
-        <p class="post-card-meta-description">
-         ** Discover the power of NanoCluster, a tiny supercomputer that&amp;#x27;s smaller than a coffee mug. Learn about its features, design, and impact on c...
-        </p>
-        <div class="post-card-date">
-         📅 June 08, 2025
-        </div>
-       </div>
-      </div>
-      <div class="post-card">
-       <div class="post-card-content">
-        <h3>
-         <a href="posts/insights-from-oryl-f1-makes-first-strong-impressio-20250608163720.html">
-          Insights from: ORYL F1 makes first strong impression
-         </a>
-        </h3>
-        <p class="post-card-meta-description">
-         ** &amp;quot;Discover the latest insights from ORYL F1&amp;#x27;s launch, a novel automated laser-based platform for measuring solubility and aggregation o...
-        </p>
-        <div class="post-card-date">
-         📅 June 08, 2025
-        </div>
-       </div>
-      </div>
+  <header class="site-header">
+   <div class="container">
+    <div class="header-top">
+     <div class="social-links">
+      <a href="#" title="Twitter">
+       <i class="fab fa-twitter">
+       </i>
+      </a>
+      <a href="#" title="Instagram">
+       <i class="fab fa-instagram">
+       </i>
+      </a>
+      <a href="#" title="Facebook">
+       <i class="fab fa-facebook-f">
+       </i>
+      </a>
      </div>
-    </section>
-    <section class="category-section" id="category-lyrics">
-     <h2>
-      <span class="icon">
-       📄
-      </span>
-      lyrics
-     </h2>
-     <div class="posts-grid">
-      <p class="no-posts">
-       No articles yet in lyrics.
+     <div class="header-content">
+      <h1 class="site-title">
+       <a href="/">
+        LETS THINK
+       </a>
+      </h1>
+      <p class="site-tagline">
+       Discover the Latest AI-Generated Articles
       </p>
      </div>
-    </section>
-    <section class="category-section" id="category-youtube-review">
-     <h2>
-      <span class="icon">
-       📄
-      </span>
-      youtube-review
-     </h2>
-     <div class="posts-grid">
-      <div class="post-card">
-       <div class="post-card-content">
-        <h3>
-         <a href="posts/endhe-endhe-video-song-4k--agent--akhil-akkinenisakshi-vaidy-20250608153318.html">
-          Endhe Endhe Video Song [4K] | Agent | Akhil Akkineni,Sakshi Vaidya | Surender Reddy | Hiphop Tamizha
-         </a>
-        </h3>
-        <p class="post-card-meta-description">
-         No description available.
-        </p>
-        <div class="post-card-date">
-         📅 June 08, 2025
-        </div>
-       </div>
-      </div>
-      <div class="post-card">
-       <div class="post-card-content">
-        <h3>
-         <a href="posts/teliyadhe-unpacking-the-magic-of-tamils-latest-hit-song--20250608152257.html">
-          Teliyadhe: Unpacking the Magic of Tamil&amp;#x27;s Latest Hit Song 🎉
-         </a>
-        </h3>
-        <p class="post-card-meta-description">
-         No description available.
-        </p>
-        <div class="post-card-date">
-         📅 June 08, 2025
-        </div>
-       </div>
-      </div>
-      <div class="post-card">
-       <div class="post-card-content">
-        <h3>
-         <a href="posts/darling---pranama-video--prabhas--g.v.-prakash-kumar-20250608151057.html">
-          Darling - Pranama Video | Prabhas | G.V. Prakash Kumar
-         </a>
-        </h3>
-        <p class="post-card-meta-description">
-         No description available.
-        </p>
-        <div class="post-card-date">
-         📅 June 08, 2025
-        </div>
-       </div>
-      </div>
-      <div class="post-card">
-       <div class="post-card-content">
-        <h3>
-         <a href="posts/vivo-x200-ultra-unboxing--real-life-camera-test----in-telugu-20250608144129.html">
-          vivo X200 Ultra Unboxing || Real Life Camera Test 🤯  || in Telugu
-         </a>
-        </h3>
-        <p class="post-card-meta-description">
-         No description available.
-        </p>
-        <div class="post-card-date">
-         📅 June 08, 2025
-        </div>
-       </div>
-      </div>
-     </div>
-    </section>
-   </main>
-   <footer class="site-footer">
-    <p>
-     {footer_text}
+    </div>
+    <nav class="main-nav">
+     <ul>
+      <li>
+       <a href="/">
+        Home
+       </a>
+      </li>
+      <li>
+       <a href="#categories">
+        Categories
+       </a>
+      </li>
+      <li>
+       <a href="#about">
+        About
+       </a>
+      </li>
+      <li>
+       <a href="#contact">
+        Contact
+       </a>
+      </li>
+     </ul>
+    </nav>
+   </div>
+  </header>
+  <div class="container main-wrapper">
+   <main class="content-area">
+    <div class="search-bar-container">
+     <input id="searchInput" placeholder="Search articles by title or keyword..." type="text">
+    </div>
+    <div id="posts-container">
+     <p class="no-posts">
+      No articles published yet across any category.
+     </p>
+    </div>
+    <p class="no-posts-message" id="globalNoSearchResults" style="display:none;">
+     No matching results found. Try a different search term.
     </p>
-   </footer>
+   </main>
+   <aside class="sidebar">
+    <div class="widget">
+     <h3 class="widget-title">
+      POPULAR POSTS
+     </h3>
+     <div class="widget-content">
+      <div class="popular-post-item">
+       <img alt="Popular Post 1" src="https://via.placeholder.com/60x60.png?text=Pop1">
+       <a href="#">
+        Demo post with formatted elements and comments.
+       </a>
+      </div>
+      <div class="popular-post-item">
+       <img alt="Popular Post 2" src="https://via.placeholder.com/60x60.png?text=Pop2">
+       <a href="#">
+        Images in this template.
+       </a>
+      </div>
+      <!-- Add more popular posts -->
+     </div>
+    </div>
+    <div class="widget">
+     <h3 class="widget-title">
+      CATEGORIES / LINKS
+     </h3>
+     <div class="widget-content">
+      <ul>
+       <li>
+        <a href="#">
+         Premium
+        </a>
+       </li>
+       <li>
+        <a href="#">
+         2 Columns
+        </a>
+       </li>
+       <li>
+        <a href="#">
+         Responsive
+        </a>
+       </li>
+       <li>
+        <a href="#">
+         Magazine
+        </a>
+       </li>
+       <li>
+        <a href="#">
+         Anime
+        </a>
+       </li>
+      </ul>
+     </div>
+    </div>
+    <div class="widget">
+     <h3 class="widget-title">
+      ABOUT
+     </h3>
+     <div class="widget-content">
+      <p>
+       Mel putent quaeque an, ut postea melius denique sit. Officiis sensibus at mea, sea at labitur deserunt. Eam dicam congue soluta ut.
+      </p>
+     </div>
+    </div>
+    <!-- Add more widgets like LABELS, BLOGROLL as needed -->
+   </aside>
   </div>
+  <footer class="site-footer">
+   <div class="container">
+    <p>
+     &copy;
+     <span id="current-year">
+     </span>
+     &copy; lets think
+    </p>
+   </div>
+  </footer>
   <script>
-   // Helper to escape HTML special characters
-    function htmlEscape(str) {
-        return String(str)
-            .replace(/&/g, '&amp;')
-            .replace(/"/g, '&quot;')
-            .replace(/'/g, '&#39;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;');
-    }
+   // Set current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
 
-    // Debounce function to limit how often a function is called
-    function debounce(func, delay) {
-        let timeout;
-        return function(...args) {
-            clearTimeout(timeout);
-            timeout = setTimeout(() => func.apply(this, args), delay);
-        };
-    }
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const posts = document.querySelectorAll('.post-item');
+            let visiblePostCount = 0;
 
-    function filterArticles() {
-        const input = document.getElementById('searchInput');
-        const filter = input.value.toLowerCase();
-        const mainContent = document.getElementById('main-content');
-        const articles = mainContent.getElementsByTagName('article');
-
-        for (let i = 0; i < articles.length; i++) {
-            const article = articles[i];
-            const title = article.getElementsByTagName('h3')[0].textContent.toLowerCase();
-            const description = article.getElementsByTagName('p')[0].textContent.toLowerCase();
-            if (title.includes(filter) || description.includes(filter)) {
-                article.style.display = '';
-            } else {
-                article.style.display = 'none';
-            }
-        }
-    }
-
-    // Attach the search functionality with debounce once the DOM is fully loaded
-    document.addEventListener('DOMContentLoaded', function() {
-        const searchInput = document.getElementById('searchInput');
-        searchInput.addEventListener('input', debounce(filterArticles, 300));
-    });
-
-    // Data passed from Python (this will be replaced with actual data)
-    const siteData = {
-        title: "{site_title}",
-        header_text: "{header_text}",
-        search_placeholder: "{search_placeholder}",
-        footer_text: "{footer_text}",
-        categories: []
-    };
-
-    // Function to render the blog content
-    function renderBlogContent(data) {
-        const mainContent = document.getElementById('main-content');
-        mainContent.innerHTML = ''; // Clear any existing content
-
-        // Group posts by category
-        const groupedPosts = {};
-        data.posts.forEach(post => {
-            if (!groupedPosts[post.category]) {
-                groupedPosts[post.category] = [];
-            }
-            groupedPosts[post.category].push(post);
-        });
-
-        // Render each category and its posts
-        for (const category in groupedPosts) {
-            const categorySection = document.createElement('section');
-            categorySection.className = 'category-section';
-            categorySection.innerHTML = `
-                <h2>${htmlEscape(category)}</h2>
-                <div class="posts-grid"></div>
-            `;
-            const postsGrid = categorySection.querySelector('.posts-grid');
-
-            groupedPosts[category].forEach(post => {
-                const postCard = document.createElement('article');
-                postCard.className = 'post-card';
-                postCard.innerHTML = `
-                    <h3>${htmlEscape(post.title)}</h3>
-                    <p>${htmlEscape(post.description)}</p>
-                    <a href="${post.link}" target="_blank">Read More</a>
-                `;
-                postsGrid.appendChild(postCard);
+            posts.forEach(post => {
+                const title = post.querySelector('.post-title a').textContent.toLowerCase();
+                const excerpt = post.querySelector('.post-excerpt').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || excerpt.includes(searchTerm)) {
+                    post.style.display = 'flex';
+                    visiblePostCount++;
+                } else {
+                    post.style.display = 'none';
+                }
             });
 
-            mainContent.appendChild(categorySection);
-        }
-    }
-
-    // Initialize the page
-    document.title = siteData.title;
-    document.querySelector('header.site-header h1').textContent = siteData.title;
-    document.querySelector('header.site-header p').textContent = siteData.header_text;
-    document.getElementById('searchInput').placeholder = siteData.search_placeholder;
-    document.querySelector('footer.site-footer p').textContent = siteData.footer_text;
-    renderBlogContent({ posts: siteData.categories.flatMap(cat => cat.posts) });
+            // Show/hide no results message
+            const noResultsElement = document.getElementById('globalNoSearchResults');
+            if (visiblePostCount === 0 && posts.length > 0) {
+                noResultsElement.style.display = 'block';
+            } else {
+                noResultsElement.style.display = 'none';
+            }
+        });
   </script>
  </body>
 </html>
